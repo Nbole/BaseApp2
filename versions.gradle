@@ -1,0 +1,18 @@
+//https://developer.android.com/jetpack/androidx/releases/room
+ext.room_version = '2.3.0'
+//https://github.com/google/gson/blob/master/CHANGELOG.md
+ext.gson_version = '2.8.7'
+//https://developer.android.com/jetpack/androidx/releases/hilt?hl=es-419
+ext.hilt_version = "1.0.0"
+//https://github.com/google/dagger/releases
+ext.dagger_version = '2.37'
+//https://developer.android.com/jetpack/androidx/releases/compose#versions
+ext.compose = "1.0.4"
+//https://github.com/square/picasso/blob/master/CHANGELOG.md
+ext.picasso_version = '2.71828'
+//https://developer.android.com/jetpack/androidx/releases/swiperefreshlayout
+ext.swipe_refresh = '1.1.0'
+//https://developer.android.com/jetpack/androidx/releases/paging
+ext.paging_version = "3.0.1"
+//https://github.com/Kotlin/kotlinx.coroutines/releases
+ext.coroutines_version = '1.5.2'
