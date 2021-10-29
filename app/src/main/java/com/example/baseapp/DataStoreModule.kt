@@ -1,9 +1,6 @@
 package com.example.baseapp
 
 import android.content.Context
-import android.net.ConnectivityManager
-import android.net.Network
-import android.net.NetworkRequest
 import androidx.room.Room
 import dagger.Module
 import dagger.Provides
@@ -27,15 +24,15 @@ class DataStoreModule {
 
     @Singleton
     @Provides
-    fun provideOkHttpClient(@ApplicationContext appContext: Context): OkHttpClient {
+    fun provideOkHttpClient(): OkHttpClient {
         val loggingInterceptor = HttpLoggingInterceptor()
         loggingInterceptor.setLevel(HttpLoggingInterceptor.Level.BODY)
         return OkHttpClient.Builder().addInterceptor { chain ->
             var request = chain.request()
-            request =  request.newBuilder().header(
+           /* request =  request.newBuilder().header(
                 "Cache-Control",
                 "public, only-if-cached, max-stale=" + 60 * 60 * 24 * 7
-            ).build()
+            ).build()*/
             chain.proceed(request)
         }.build()
     }
@@ -43,28 +40,6 @@ class DataStoreModule {
     @Provides
     @Singleton
     fun provideMovieDao(db: SwarmDb): MovieDao = db.movieDao()
-
-    private fun hasNetwork(context: Context): Boolean? {
-        var status: Boolean? = false
-        val cm: ConnectivityManager =
-            context.getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
-
-        val builder: NetworkRequest.Builder = NetworkRequest.Builder()
-        val networkCallback = object : ConnectivityManager.NetworkCallback() {
-            override fun onAvailable(network: Network) {
-                status = true
-            }
-
-            override fun onLost(network: Network) {
-                status = false
-            }
-        }
-
-        cm.registerNetworkCallback(
-            builder.build(), networkCallback
-        )
-        return status
-    }
 
     @Singleton
     @Provides
