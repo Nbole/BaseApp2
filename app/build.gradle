@@ -67,15 +67,15 @@ android {
 
 dependencies {
     implementation "androidx.compose.ui:ui:$compose"
-    implementation "androidx.activity:activity-compose:1.3.1"
+    implementation "androidx.activity:activity-compose:$compose"
     implementation "androidx.compose.material:material:$compose"
     implementation "androidx.compose.ui:ui-tooling:$compose"
-    implementation 'androidx.core:core-ktx:1.6.0'
-    implementation 'androidx.appcompat:appcompat:1.3.1'
-    implementation 'com.google.android.material:material:1.4.0'
-    implementation 'androidx.constraintlayout:constraintlayout:2.1.0'
-    implementation 'androidx.navigation:navigation-fragment-ktx:2.3.5'
-    implementation 'androidx.navigation:navigation-ui-ktx:2.3.5'
+    implementation "androidx.core:core-ktx:$core"
+    implementation "androidx.appcompat:appcompat:$app_compat"
+    implementation "com.google.android.material:material:$material"
+    implementation "androidx.constraintlayout:constraintlayout:$constrain"
+    implementation "androidx.navigation:navigation-fragment-ktx:$navigation"
+    implementation "androidx.navigation:navigation-ui-ktx:$navigation"
     implementation "androidx.room:room-ktx:$room_version"
     implementation "com.google.code.gson:gson:$gson_version"
     implementation "org.jetbrains.kotlinx:kotlinx-coroutines-core:$coroutines_version"
@@ -88,24 +88,24 @@ dependencies {
     kapt "androidx.room:room-compiler:$room_version"
 
     // Architectural Components
-    implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:2.3.1"
-    implementation "androidx.lifecycle:lifecycle-livedata-ktx:2.3.1"
+    implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:$life_cycle"
+    implementation "androidx.lifecycle:lifecycle-livedata-ktx:$life_cycle"
 
     // Retrofit
-    implementation 'com.squareup.retrofit2:retrofit:2.6.0'
-    implementation 'com.squareup.retrofit2:converter-gson:2.6.0'
-    implementation "com.squareup.okhttp3:logging-interceptor:4.5.0"
+    implementation "com.squareup.retrofit2:retrofit:$retrofit"
+    implementation "com.squareup.retrofit2:converter-gson:$retrofit"
+    implementation "com.squareup.okhttp3:logging-interceptor:$interceptor"
 
     // Coroutines
-    implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-core:1.3.8'
-    implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-android:1.3.5'
+    implementation "org.jetbrains.kotlinx:kotlinx-coroutines-core:$coroutines_core"
+    implementation "org.jetbrains.kotlinx:kotlinx-coroutines-android:$coroutines_android"
 
     // Coroutine Lifecycle Scopes
-    implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:2.3.1"
-    implementation "androidx.lifecycle:lifecycle-runtime-ktx:2.3.1"
+    implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:$lifecycle_viewmodel"
+    implementation "androidx.lifecycle:lifecycle-runtime-ktx:$lifecycle_viewmodel"
 
     // Activity KTX for viewModels()
-    implementation "androidx.activity:activity-ktx:1.3.1"
+    implementation "androidx.activity:activity-ktx:$app_compat"
     // picasso
     implementation "com.squareup.picasso:picasso:$picasso_version"
     // paging 3
