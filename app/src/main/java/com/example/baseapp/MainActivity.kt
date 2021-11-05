@@ -1,7 +1,6 @@
 package com.example.baseapp
 
 import android.os.Bundle
-import android.util.Log
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.lifecycleScope
@@ -24,6 +23,19 @@ class MainActivity : AppCompatActivity() {
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
         lifecycleScope.launch(Dispatchers.IO) {
+
+
+            /*query<PreviewHomeSupplierResponse>(
+                baseUrl = "https://bff-qa.wabi2b.com/graphql",
+                queryName = "previewHomeSuppliers",
+                queryBody = " {...on PreviewHomeSupplierResponse {suppliers {id name avatar}}}",
+                variables = CoordinatesInput(
+                    -34.6287294,
+                    -58.41489699999999
+                )
+            )*/
+
+
             get<MealResponse>(
                 "https://www.themealdb.com/api/json/v1/1/categories.php",
                 null,
