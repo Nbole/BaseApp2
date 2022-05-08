@@ -1,12 +1,12 @@
 package com.example.baseapp
 
 import android.os.Bundle
+import android.util.Log
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.lifecycleScope
 import androidx.paging.ExperimentalPagingApi
 import com.example.baseapp.databinding.ActivityMainBinding
-import com.example.baseapp.db.MovieResponse
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -24,7 +24,6 @@ class MainActivity : AppCompatActivity() {
         setContentView(binding.root)
         lifecycleScope.launch(Dispatchers.IO) {
 
-
             /*query<PreviewHomeSupplierResponse>(
                 baseUrl = "https://bff-qa.wabi2b.com/graphql",
                 queryName = "previewHomeSuppliers",
@@ -35,8 +34,7 @@ class MainActivity : AppCompatActivity() {
                 )
             )*/
 
-
-            get<MealResponse>(
+            /*    get<MealResponse>(
                 "https://www.themealdb.com/api/json/v1/1/categories.php",
                 null,
                 null
@@ -46,18 +44,16 @@ class MainActivity : AppCompatActivity() {
                 "api_key",
                 "5e30e8afd06d2b8b9aae8eb164c85a29"
             )
-        }
-
-
-        /*viewModel.latestMovies.observe(
-            this@MainActivity,
-            {
+        }*/
+            viewModel.latestMovies.observe(
+                this@MainActivity
+            ) {
                 when (it) {
                     is Resource.Error<*> -> Log.d("Error", it.message.toString())
                     is Resource.Loading<*> -> Log.d("Loading", it.data.toString())
                     else -> Log.d("Success", it.data.toString())
                 }
             }
-        )*/
+        }
     }
 }
