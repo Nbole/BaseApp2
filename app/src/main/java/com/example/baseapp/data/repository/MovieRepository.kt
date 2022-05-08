@@ -1,7 +1,7 @@
 package com.example.baseapp.data.repository
 
 import com.example.baseapp.data.local.model.dao.MovieDao
-import com.example.baseapp.MovieDataContract
+import com.example.baseapp.data.remote.MovieDataContract
 import com.example.baseapp.Resource
 import com.example.baseapp.data.local.model.db.Movie
 import com.example.baseapp.networkBoundResource
@@ -12,7 +12,7 @@ class MovieRepository @Inject constructor(
     private val db: MovieDao,
     private val movieDataContract: MovieDataContract,
 ): MovieRepositoryContract {
-    override suspend fun getLatestMovies(): Flow<Resource<List<Movie>>> = networkBoundResource(
+    override fun getLatestMovies(): Flow<Resource<List<Movie>>> = networkBoundResource(
         { db.loadMovies() },
         { movieDataContract.getLatestMovies() },
         { response ->

@@ -5,5 +5,5 @@ import com.example.baseapp.data.local.model.db.Movie
 import kotlinx.coroutines.flow.Flow
 
 interface MovieRepositoryContract {
-    suspend fun getLatestMovies(): Flow<Resource<List<Movie>>>
+    fun getLatestMovies(): Flow<Resource<List<Movie>>>
 }

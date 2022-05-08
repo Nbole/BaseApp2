@@ -43,9 +43,9 @@ class MainActivity : AppCompatActivity() {
         }*/
             viewModel.latestPagedMovies.observe(this) {
                 when (it) {
-                    is Resource.Error<*> -> Log.d("Error", it.message.toString())
-                    is Resource.Loading<*> -> Log.d("Loading", it.data.toString())
-                    else -> Log.d("Success", it.data.toString())
+                    is Resource.Error<*> -> Log.d("Main", "Error ${it.message}")
+                    is Resource.Loading<*> -> Log.d("Loading", "Loading ${it.data}")
+                    else -> Log.d("Success", "Succes ${it.data}")
                 }
             }
         }

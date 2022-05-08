@@ -1,8 +1,8 @@
 package com.example.baseapp.data.remote.di
 
-import com.example.baseapp.MovieApi
-import com.example.baseapp.MovieDataApi
-import com.example.baseapp.MovieDataContract
+import com.example.baseapp.data.remote.MovieApiContract
+import com.example.baseapp.data.remote.MovieDataApi
+import com.example.baseapp.data.remote.MovieDataContract
 import com.example.baseapp.data.local.model.dao.MovieDao
 import com.example.baseapp.data.repository.MovieRepository
 import dagger.Module
@@ -41,6 +41,10 @@ class RemoteModules {
         .client(okHttpClient)
         .build()
 
+    @Provides
+    fun provideMovieApi(retrofit: Retrofit): MovieApiContract =
+        retrofit.create(MovieApiContract::class.java)
+
     @Singleton
     @Provides
     fun provideMovieRepository(
@@ -50,6 +54,6 @@ class RemoteModules {
 
     @Provides
     fun provideMovieDataContract(
-        movieApi: MovieApi
-    ): MovieDataContract = MovieDataApi(movieApi)
+        movieApiContract: MovieApiContract
+    ): MovieDataContract = MovieDataApi(movieApiContract)
 }
