@@ -1,11 +1,13 @@
-package com.example.baseapp
+package com.example.baseapp.data.remote.di
 
-import android.content.Context
-import androidx.room.Room
+import com.example.baseapp.MovieApi
+import com.example.baseapp.MovieDataApi
+import com.example.baseapp.MovieDataContract
+import com.example.baseapp.data.local.model.dao.MovieDao
+import com.example.baseapp.data.repository.MovieRepository
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
-import dagger.hilt.android.qualifiers.ApplicationContext
 import dagger.hilt.components.SingletonComponent
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
@@ -15,31 +17,21 @@ import javax.inject.Singleton
 
 @InstallIn(SingletonComponent::class)
 @Module
-class DataStoreModule {
-    @Provides
-    @Singleton
-    fun provideDb(@ApplicationContext appContext: Context): SwarmDb = Room
-        .databaseBuilder(appContext, SwarmDb::class.java, SwarmDb.DATABASE_NAME)
-        .build()
-
+class RemoteModules {
     @Singleton
     @Provides
     fun provideOkHttpClient(): OkHttpClient {
         val loggingInterceptor = HttpLoggingInterceptor()
         loggingInterceptor.setLevel(HttpLoggingInterceptor.Level.BODY)
         return OkHttpClient.Builder().addInterceptor { chain ->
-            var request = chain.request()
-           /* request =  request.newBuilder().header(
-                "Cache-Control",
-                "public, only-if-cached, max-stale=" + 60 * 60 * 24 * 7
-            ).build()*/
+            val request = chain.request()
+            /* request =  request.newBuilder().header(
+                 "Cache-Control",
+                 "public, only-if-cached, max-stale=" + 60 * 60 * 24 * 7
+             ).build()*/
             chain.proceed(request)
         }.build()
     }
-
-    @Provides
-    @Singleton
-    fun provideMovieDao(db: SwarmDb): MovieDao = db.movieDao()
 
     @Singleton
     @Provides
@@ -49,11 +41,15 @@ class DataStoreModule {
         .client(okHttpClient)
         .build()
 
+    @Singleton
     @Provides
-    fun provideCharacterService(retrofit: Retrofit): MovieService =
-        retrofit.create(MovieService::class.java)
+    fun provideMovieRepository(
+        db: MovieDao,
+        movieDataContract: MovieDataContract,
+    ): MovieRepository = MovieRepository(db, movieDataContract)
 
     @Provides
-    fun provideMovieDataSource(movieService: MovieService): MovieDataSource =
-        MovieDataSourceImpl(movieService)
+    fun provideMovieDataContract(
+        movieApi: MovieApi
+    ): MovieDataContract = MovieDataApi(movieApi)
 }
