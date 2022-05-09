@@ -1,19 +1,25 @@
 package com.example.baseapp.data.repository
 
+import com.example.baseapp.base.BaseMapper
 import com.example.baseapp.data.local.model.dao.MovieDao
-import com.example.baseapp.data.remote.MovieDataContract
-import com.example.baseapp.Resource
 import com.example.baseapp.data.local.model.db.Movie
+import com.example.baseapp.data.remote.mapResponse
+import com.example.baseapp.domain.DResponse
+import com.example.baseapp.domain.MovieDataContract
 import com.example.baseapp.domain.MovieRepositoryContract
+import com.example.baseapp.domain.MovieResponse
 import com.example.baseapp.networkBoundResource
 import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.map
+import kotlinx.coroutines.flow.transform
 import javax.inject.Inject
 
-class MovieRepository @Inject constructor(
+class MovieRepository(
     private val db: MovieDao,
     private val movieDataContract: MovieDataContract,
-): MovieRepositoryContract {
-    override fun getLatestMovies(): Flow<Resource<List<Movie>>> = networkBoundResource(
+    private val movieMapper: BaseMapper<Movie, MovieResponse>
+) : MovieRepositoryContract {
+    override fun getLatestMovies(): Flow<DResponse<out List<MovieResponse>?>> = networkBoundResource(
         { db.loadMovies() },
         { movieDataContract.getLatestMovies() },
         { response ->
@@ -22,5 +28,9 @@ class MovieRepository @Inject constructor(
                 db.saveMovies(movies)
             }
         }
-    )
+    ).map { w ->
+        w.mapResponse {
+            movieMapper.transform(it)
+        }
+    }
 }

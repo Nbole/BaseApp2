@@ -1,5 +1,6 @@
 package com.example.baseapp
 
+import com.example.baseapp.data.WResponse
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.emitAll
@@ -13,15 +14,15 @@ inline fun <ResultType, RequestType> networkBoundResource(
     crossinline loadFromDb: () -> Flow<ResultType>,
     crossinline netWorkRequest: suspend () -> Response<RequestType>,
     crossinline saveCall: suspend (Response<RequestType>) -> Unit
-): Flow<Resource<ResultType>> = flow {
-    emit(Resource.Loading(loadFromDb().firstOrNull()))
+): Flow<WResponse<ResultType>> = flow {
+    emit(WResponse.Loading(loadFromDb().firstOrNull()))
     val netWorkResponse: Response<RequestType> = netWorkRequest()
     emitAll(
         if (netWorkResponse.isSuccessful) {
             saveCall(netWorkResponse)
-            loadFromDb().map { Resource.Success(it) }
+            loadFromDb().map { WResponse.Success(it) }
         } else {
-            loadFromDb().map { Resource.Error("Error", it) }
+            loadFromDb().map { WResponse.Error("Error", it) }
         }
     )
 }.flowOn(Dispatchers.IO)
