@@ -1,14 +1,11 @@
-package com.example.baseapp
+package com.example.baseapp.presentation.vm
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.asLiveData
-import androidx.paging.ExperimentalPagingApi
-import com.example.baseapp.data.local.model.db.Movie
-import com.example.baseapp.data.repository.MovieRepository
-import com.example.baseapp.domain.DResponse
-import com.example.baseapp.domain.MovieResponse
-import com.example.baseapp.domain.MoviesUseCase
+import com.example.baseapp.domain.model.DResponse
+import com.example.baseapp.domain.model.vo.MovieResponse
+import com.example.baseapp.domain.usecase.MoviesUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
 import javax.inject.Inject
 

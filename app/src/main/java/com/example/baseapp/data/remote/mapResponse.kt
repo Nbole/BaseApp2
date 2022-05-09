@@ -1,7 +1,7 @@
 package com.example.baseapp.data.remote
 
 import com.example.baseapp.data.WResponse
-import com.example.baseapp.domain.DResponse
+import com.example.baseapp.domain.model.DResponse
 
 internal fun <I, O> WResponse<I>.mapResponse(transformAction: (I) -> O) =
     when (this) {

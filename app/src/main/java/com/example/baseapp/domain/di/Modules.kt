@@ -1,4 +1,4 @@
-package com.example.baseapp.base.di
+package com.example.baseapp.domain.di
 
 import com.example.baseapp.base.BaseMapper
 import com.example.baseapp.base.Dispatchers
@@ -21,14 +21,14 @@ import javax.inject.Singleton
 @Module
 class LocaleModules {
     @Provides
-    @Singleton
-    fun provideDispatchers(): DispatchersProvider = Dispatchers()
+    fun provideMovieRepositoryContract(
+        db: SwarmDb,
+        movieDataContract: MovieDataContract,
+        movieMapper: BaseMapper<Movie, MovieResponse>
+    ): MovieRepositoryContract = MovieRepository(db.movieDao(), movieDataContract, movieMapper)
 
     @Provides
     @Singleton
-    fun provideSuggestedSearchEntityMapper(): BaseMapper<Movie, MovieResponse> = MovieMapper()
-
-    @Provides
-    @Singleton
-    fun provideIODispatcher() = kotlinx.coroutines.Dispatchers.IO
+    fun provideMovieUseCase(movieRepository: MovieRepositoryContract) =
+        MoviesUseCase(movieRepository)
 }

@@ -1,5 +1,8 @@
-package com.example.baseapp.domain
+package com.example.baseapp.domain.usecase
 
+import com.example.baseapp.domain.MovieRepositoryContract
+import com.example.baseapp.domain.model.DResponse
+import com.example.baseapp.domain.model.vo.MovieResponse
 import kotlinx.coroutines.flow.Flow
 import javax.inject.Inject
 

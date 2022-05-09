@@ -4,15 +4,13 @@ import com.example.baseapp.base.BaseMapper
 import com.example.baseapp.data.local.model.dao.MovieDao
 import com.example.baseapp.data.local.model.db.Movie
 import com.example.baseapp.data.remote.mapResponse
-import com.example.baseapp.domain.DResponse
+import com.example.baseapp.domain.model.DResponse
 import com.example.baseapp.domain.MovieDataContract
 import com.example.baseapp.domain.MovieRepositoryContract
-import com.example.baseapp.domain.MovieResponse
+import com.example.baseapp.domain.model.vo.MovieResponse
 import com.example.baseapp.networkBoundResource
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map
-import kotlinx.coroutines.flow.transform
-import javax.inject.Inject
 
 class MovieRepository(
     private val db: MovieDao,

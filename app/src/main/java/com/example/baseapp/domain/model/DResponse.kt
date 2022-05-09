@@ -1,4 +1,4 @@
-package com.example.baseapp.domain
+package com.example.baseapp.domain.model
 
 sealed class DResponse<T>(
     val data: T? = null,

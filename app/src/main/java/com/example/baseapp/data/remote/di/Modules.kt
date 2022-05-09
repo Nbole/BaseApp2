@@ -1,22 +1,12 @@
 package com.example.baseapp.data.remote.di
 
-import com.example.baseapp.base.BaseMapper
-import com.example.baseapp.data.MovieMapper
-import com.example.baseapp.data.local.SwarmDb
 import com.example.baseapp.data.remote.MovieApiContract
 import com.example.baseapp.data.remote.MovieDataApi
 import com.example.baseapp.domain.MovieDataContract
-import com.example.baseapp.data.local.model.dao.MovieDao
-import com.example.baseapp.data.local.model.db.Movie
-import com.example.baseapp.data.repository.MovieRepository
-import com.example.baseapp.domain.MovieRepositoryContract
-import com.example.baseapp.domain.MovieResponse
-import com.example.baseapp.domain.MoviesUseCase
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
-import kotlinx.coroutines.Dispatchers
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit

@@ -1,4 +1,4 @@
-package com.example.baseapp.domain
+package com.example.baseapp.domain.model.vo
 
 data class MovieResponse(
     val id: Int,
