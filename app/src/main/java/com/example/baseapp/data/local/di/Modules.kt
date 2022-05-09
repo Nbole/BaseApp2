@@ -3,7 +3,7 @@ package com.example.baseapp.data.local.di
 import android.content.Context
 import androidx.room.Room
 import com.example.baseapp.data.local.model.dao.MovieDao
-import com.example.baseapp.SwarmDb
+import com.example.baseapp.data.local.SwarmDb
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn

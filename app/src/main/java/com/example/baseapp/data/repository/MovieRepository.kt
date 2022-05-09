@@ -4,6 +4,7 @@ import com.example.baseapp.data.local.model.dao.MovieDao
 import com.example.baseapp.data.remote.MovieDataContract
 import com.example.baseapp.Resource
 import com.example.baseapp.data.local.model.db.Movie
+import com.example.baseapp.domain.MovieRepositoryContract
 import com.example.baseapp.networkBoundResource
 import kotlinx.coroutines.flow.Flow
 import javax.inject.Inject
