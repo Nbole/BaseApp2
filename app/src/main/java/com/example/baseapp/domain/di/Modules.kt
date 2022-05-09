@@ -1,9 +1,8 @@
 package com.example.baseapp.domain.di
 
-import com.example.baseapp.base.BaseMapper
-import com.example.baseapp.base.Dispatchers
-import com.example.baseapp.base.DispatchersProvider
-import com.example.baseapp.data.MovieMapper
+import com.example.base.BaseMapper
+import com.example.base.DispatchersProvider
+import com.example.base.Dispatcherss
 import com.example.baseapp.data.local.SwarmDb
 import com.example.baseapp.data.local.model.db.Movie
 import com.example.baseapp.data.repository.MovieRepository
@@ -29,6 +28,6 @@ class LocaleModules {
 
     @Provides
     @Singleton
-    fun provideMovieUseCase(movieRepository: MovieRepositoryContract) =
-        MoviesUseCase(movieRepository)
+    fun provideMovieUseCase(movieRepository: MovieRepositoryContract, dispacher: DispatchersProvider) =
+        MoviesUseCase(movieRepository,dispacher)
 }

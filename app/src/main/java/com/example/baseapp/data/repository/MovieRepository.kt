@@ -1,6 +1,7 @@
 package com.example.baseapp.data.repository
 
-import com.example.baseapp.base.BaseMapper
+import com.example.base.BaseMapper
+import com.example.base.networkBoundResource
 import com.example.baseapp.data.local.model.dao.MovieDao
 import com.example.baseapp.data.local.model.db.Movie
 import com.example.baseapp.data.remote.mapResponse
@@ -8,7 +9,6 @@ import com.example.baseapp.domain.model.DResponse
 import com.example.baseapp.domain.MovieDataContract
 import com.example.baseapp.domain.MovieRepositoryContract
 import com.example.baseapp.domain.model.vo.MovieResponse
-import com.example.baseapp.networkBoundResource
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map
 

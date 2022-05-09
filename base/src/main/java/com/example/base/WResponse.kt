@@ -1,4 +1,4 @@
-package com.example.baseapp.data
+package com.example.base
 
 sealed class WResponse<T>(
     val data: T? = null,

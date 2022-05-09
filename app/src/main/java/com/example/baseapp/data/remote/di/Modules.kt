@@ -1,8 +1,12 @@
 package com.example.baseapp.data.remote.di
 
+import com.example.base.BaseMapper
+import com.example.baseapp.data.MovieMapper
+import com.example.baseapp.data.local.model.db.Movie
 import com.example.baseapp.data.remote.MovieApiContract
 import com.example.baseapp.data.remote.MovieDataApi
 import com.example.baseapp.domain.MovieDataContract
+import com.example.baseapp.domain.model.vo.MovieResponse
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -47,4 +51,8 @@ class RemoteModules {
     fun provideMovieDataContract(
         movieApiContract: MovieApiContract
     ): MovieDataContract = MovieDataApi(movieApiContract)
+
+    @Provides
+    @Singleton
+    fun provideSuggestedSearchEntityMapper(): BaseMapper<Movie, MovieResponse> = MovieMapper()
 }

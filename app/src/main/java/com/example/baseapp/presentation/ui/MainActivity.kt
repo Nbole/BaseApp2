@@ -11,7 +11,6 @@ import com.example.baseapp.presentation.vm.MovieViewModel
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
-@ExperimentalPagingApi
 class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
     private val viewModel: MovieViewModel by viewModels()

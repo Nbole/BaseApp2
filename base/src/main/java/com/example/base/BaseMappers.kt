@@ -1,4 +1,4 @@
-package com.example.baseapp.base
+package com.example.base
 
 abstract class BaseMapper<Input, Output> {
     fun transform(inputModelList: List<Input>) = inputModelList.map { transform(it) }

@@ -1,4 +1,4 @@
-package com.example.baseapp.base
+package com.example.base
 
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.Dispatchers
@@ -9,7 +9,7 @@ interface DispatchersProvider {
     val io: CoroutineDispatcher
 }
 
-class Dispatchers : DispatchersProvider {
+class Dispatcherss : DispatchersProvider {
     override val main: CoroutineDispatcher
         get() = Dispatchers.Main
     override val default: CoroutineDispatcher

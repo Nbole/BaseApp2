@@ -1,6 +1,5 @@
-package com.example.baseapp
+package com.example.base
 
-import com.example.baseapp.data.WResponse
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.emitAll
