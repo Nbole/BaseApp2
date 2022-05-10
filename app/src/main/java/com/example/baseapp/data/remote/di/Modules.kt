@@ -1,6 +1,6 @@
 package com.example.baseapp.data.remote.di
 
-import com.example.base.BaseMapper
+import com.example.base.mappers.BaseMapper
 import com.example.baseapp.data.MovieMapper
 import com.example.baseapp.data.local.model.db.Movie
 import com.example.baseapp.data.remote.MovieApiContract

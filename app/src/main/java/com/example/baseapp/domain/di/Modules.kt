@@ -1,8 +1,7 @@
 package com.example.baseapp.domain.di
 
-import com.example.base.BaseMapper
+import com.example.base.mappers.BaseMapper
 import com.example.base.DispatchersProvider
-import com.example.base.Dispatcherss
 import com.example.baseapp.data.local.SwarmDb
 import com.example.baseapp.data.local.model.db.Movie
 import com.example.baseapp.data.repository.MovieRepository

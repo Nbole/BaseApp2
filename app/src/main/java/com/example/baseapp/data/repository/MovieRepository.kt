@@ -1,7 +1,7 @@
 package com.example.baseapp.data.repository
 
-import com.example.base.BaseMapper
-import com.example.base.networkBoundResource
+import com.example.base.mappers.BaseMapper
+import com.example.baseapp.data.networkBoundResource
 import com.example.baseapp.data.local.model.dao.MovieDao
 import com.example.baseapp.data.local.model.db.Movie
 import com.example.baseapp.data.remote.mapResponse

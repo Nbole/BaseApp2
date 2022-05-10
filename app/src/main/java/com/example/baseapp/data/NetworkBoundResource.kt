@@ -1,11 +1,9 @@
-package com.example.base
+package com.example.baseapp.data
 
-import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.emitAll
 import kotlinx.coroutines.flow.firstOrNull
 import kotlinx.coroutines.flow.flow
-import kotlinx.coroutines.flow.flowOn
 import kotlinx.coroutines.flow.map
 import retrofit2.Response
 
@@ -24,4 +22,4 @@ inline fun <ResultType, RequestType> networkBoundResource(
             loadFromDb().map { WResponse.Error("Error", it) }
         }
     )
-}.flowOn(Dispatchers.IO)
+}
