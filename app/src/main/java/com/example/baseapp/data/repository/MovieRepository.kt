@@ -5,12 +5,14 @@ import com.example.baseapp.data.networkBoundResource
 import com.example.baseapp.data.local.model.dao.MovieDao
 import com.example.baseapp.data.local.model.db.Movie
 import com.example.baseapp.data.remote.mapResponse
+import com.example.baseapp.data.remote.model.MovieResult
 import com.example.baseapp.domain.model.DResponse
 import com.example.baseapp.domain.MovieDataContract
 import com.example.baseapp.domain.MovieRepositoryContract
 import com.example.baseapp.domain.model.vo.MovieResponse
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map
+import retrofit2.Response
 
 class MovieRepository(
     private val db: MovieDao,
@@ -21,7 +23,7 @@ class MovieRepository(
         { db.loadMovies() },
         { movieDataContract.getLatestMovies() },
         { response ->
-            val movies = response.body()?.results
+            val movies: List<Movie>? = response.data?.results
             if (!movies.isNullOrEmpty()) {
                 db.saveMovies(movies)
             }
