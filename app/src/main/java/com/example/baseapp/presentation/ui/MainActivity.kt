@@ -2,18 +2,16 @@ package com.example.baseapp.presentation.ui
 
 import android.os.Bundle
 import android.util.Log
-import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
-import androidx.paging.ExperimentalPagingApi
 import com.example.baseapp.databinding.ActivityMainBinding
 import com.example.baseapp.domain.model.DResponse
 import com.example.baseapp.presentation.vm.MovieViewModel
-import dagger.hilt.android.AndroidEntryPoint
+import org.koin.androidx.viewmodel.ext.android.viewModel
 
-@AndroidEntryPoint
+//@AndroidEntryPoint
 class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
-    private val viewModel: MovieViewModel by viewModels()
+    private val viewModel: MovieViewModel by viewModel()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

@@ -8,11 +8,13 @@ import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
 import javax.inject.Singleton
 
-@InstallIn(SingletonComponent::class)
-@Module
-class LocaleModules {
+//@InstallIn(SingletonComponent::class)
+//@Module
+/*class LocaleModules {
 
-    @Provides
-    @Singleton
+  //  @Provides
+  //  @Singleton
     fun provideDispatchers(): DispatchersProvider = Dispatcherss()
-}
+}*/
+
+fun provideDispatchers(): DispatchersProvider = Dispatcherss()

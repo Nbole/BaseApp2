@@ -8,10 +8,6 @@ import com.example.baseapp.data.remote.MovieApiContract
 import com.example.baseapp.data.remote.MovieDataApi
 import com.example.baseapp.domain.MovieDataContract
 import com.example.baseapp.domain.model.vo.MovieResponse
-import dagger.Module
-import dagger.Provides
-import dagger.hilt.InstallIn
-import dagger.hilt.components.SingletonComponent
 import io.ktor.client.HttpClient
 import io.ktor.client.features.HttpTimeout
 import io.ktor.client.features.defaultRequest
@@ -26,10 +22,11 @@ import io.ktor.http.contentType
 import kotlinx.serialization.json.Json
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
+import org.koin.dsl.module
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import javax.inject.Singleton
-
+/*
 @InstallIn(SingletonComponent::class)
 @Module
 class RemoteModules {
@@ -67,6 +64,14 @@ class RemoteModules {
     @Singleton
     fun provideSuggestedSearchEntityMapper(): BaseMapper<Movie, MovieResponse> = MovieMapper()
 }
+*/
+
+fun provideMovieApi(retrofit: Retrofit): MovieApiContract =
+    retrofit.create(MovieApiContract::class.java)
+
+fun provideMovieDataContract(): MovieDataContract = MovieDataApi()
+
+fun provideSuggestedSearchEntityMapper(): BaseMapper<Movie, MovieResponse> = MovieMapper()
 
 object KtorClient {
     private val json = Json {

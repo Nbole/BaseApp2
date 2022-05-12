@@ -4,14 +4,9 @@ import android.content.Context
 import androidx.room.Room
 import com.example.baseapp.data.local.SwarmDb
 import com.example.baseapp.data.local.model.dao.MovieDao
-import dagger.Module
-import dagger.Provides
-import dagger.hilt.InstallIn
-import dagger.hilt.android.qualifiers.ApplicationContext
-import dagger.hilt.components.SingletonComponent
-import javax.inject.Singleton
+import org.koin.dsl.module
 
-@InstallIn(SingletonComponent::class)
+/*@InstallIn(SingletonComponent::class)
 @Module
 class LocaleModules {
     @Provides
@@ -23,4 +18,10 @@ class LocaleModules {
     @Provides
     @Singleton
     fun provideMovieDao(db: SwarmDb): MovieDao = db.movieDao()
-}
+}*/
+
+fun provideDb(appContext: Context): SwarmDb = Room
+    .databaseBuilder(appContext, SwarmDb::class.java, SwarmDb.DATABASE_NAME)
+    .build()
+
+fun provideMovieDao(db: SwarmDb): MovieDao = db.movieDao()
