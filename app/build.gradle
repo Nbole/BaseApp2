@@ -3,6 +3,7 @@ apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-kapt'
 apply plugin: 'dagger.hilt.android.plugin'
 apply plugin: 'kotlinx-serialization'
+apply plugin: 'com.squareup.sqldelight'
 
 android {
     compileSdk 31
@@ -27,6 +28,8 @@ android {
         versionName "1.0"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        buildConfigField("String", "BASE_URL", "\"https://api.themoviedb.org/3/movie/\"")
+        buildConfigField("String", "API_KEY", API_KEY)
     }
 
     buildTypes {
@@ -117,12 +120,15 @@ dependencies {
     // paging 3
     implementation "androidx.paging:paging-runtime-ktx:$paging_version"
 
-// Koin main features for Android
     implementation "io.insert-koin:koin-android:3.2.0"
-// Java Compatibility
     implementation "io.insert-koin:koin-android-compat:3.2.0"
-// Jetpack WorkManager
     implementation "io.insert-koin:koin-androidx-workmanager:3.2.0"
-// Navigation Graph
     implementation "io.insert-koin:koin-androidx-navigation:3.2.0"
+    implementation "com.squareup.sqldelight:android-driver:1.5.3"
+}
+
+sqldelight {
+    MovieDataBase {
+        packageName = "com.example.baseapp"
+    }
 }

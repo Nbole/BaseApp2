@@ -1,17 +1,54 @@
 package com.example.baseapp.data.local.model.dao
 
-import androidx.room.Dao
-import androidx.room.Insert
-import androidx.room.OnConflictStrategy
-import androidx.room.Query
+import com.example.base.DispatchersProvider
+import com.example.baseapp.MovieDataBase
 import com.example.baseapp.data.local.model.db.Movie
 import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.flow
+import kotlinx.coroutines.withContext
+import movie.MovieEntity
 
-@Dao
 interface MovieDao {
-    @Insert(onConflict = OnConflictStrategy.REPLACE)
-    suspend fun saveMovies(pagedMovies: List<Movie>)
+    suspend fun loadMovieById(id: Int): MovieEntity?
+    fun loadAllMovies(): Flow<List<MovieEntity>>
+    suspend fun deleteAllMovies()
+    suspend fun saveMovies(input: List<Movie>)
+}
 
-    @Query("SELECT * FROM Movie")
-    fun loadMovies(): Flow<List<Movie>>
+class MovieDaoImpl(
+    db: MovieDataBase,
+    private val dispatchersProvider: DispatchersProvider,
+) : MovieDao {
+    private val queries = db.movieEntityQueries
+
+    override suspend fun loadMovieById(id: Int): MovieEntity? {
+        return withContext(dispatchersProvider.io) {
+            queries.getMovieEntity(id.toLong()).executeAsOneOrNull()
+        }
+    }
+
+    override fun loadAllMovies(): Flow<List<MovieEntity>> {
+        return flow {
+            emit(queries.getAllMovies().executeAsList())
+        }
+    }
+
+    override suspend fun deleteAllMovies() {
+        withContext(dispatchersProvider.io) {
+            queries.deleteAllMovie()
+        }
+    }
+
+    override suspend fun saveMovies(input: List<Movie>) {
+        withContext(dispatchersProvider.io) {
+            input.map {
+                queries.saveMovies(
+                    id = it.id.toLong(),
+                    overview = it.overview,
+                    posterPath = it.posterPath,
+                    title = it.title
+                )
+            }
+        }
+    }
 }

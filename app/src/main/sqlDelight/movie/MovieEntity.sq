@@ -1,0 +1,27 @@
+CREATE TABLE MovieEntity (
+    id INTEGER NOT NULL PRIMARY KEY,
+    title TEXT,
+    overview TEXT,
+    posterPath TEXT
+);
+
+getMovieEntity:
+SELECT  *
+FROM MovieEntity
+WHERE id = :id;
+
+getAllMovies:
+SELECT  *
+FROM MovieEntity;
+
+saveMovies:
+INSERT OR REPLACE
+INTO MovieEntity
+VALUES (?,?,?,?);
+
+deleteAllMovie:
+DELETE FROM MovieEntity;
+
+deleteMovie:
+DELETE FROM MovieEntity
+WHERE id = :id;

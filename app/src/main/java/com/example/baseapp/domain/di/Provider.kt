@@ -2,7 +2,8 @@ package com.example.baseapp.domain.di
 
 import com.example.base.DispatchersProvider
 import com.example.base.mappers.BaseMapper
-import com.example.baseapp.data.local.SwarmDb
+import com.example.baseapp.data.local.model.dao.MovieDao
+//import com.example.baseapp.data.local.SwarmDb
 import com.example.baseapp.data.local.model.db.Movie
 import com.example.baseapp.data.repository.MovieRepository
 import com.example.baseapp.domain.MovieDataContract
@@ -10,6 +11,7 @@ import com.example.baseapp.domain.MovieRepositoryContract
 import com.example.baseapp.domain.model.vo.MovieResponse
 import com.example.baseapp.domain.usecase.MovieUseCase
 import com.example.baseapp.domain.usecase.MoviesUseCaseImpl
+import movie.MovieEntity
 
 /*@InstallIn(SingletonComponent::class)
 @Module
@@ -27,10 +29,10 @@ class LocaleModules {
         MoviesUseCase(movieRepository,dispacher)
 }*/
 fun provideMovieRepositoryContract(
-    db: SwarmDb,
+    db: MovieDao,
     movieDataContract: MovieDataContract,
-    movieMapper: BaseMapper<Movie, MovieResponse>
-): MovieRepositoryContract = MovieRepository(db.movieDao(), movieDataContract, movieMapper)
+    movieMapper: BaseMapper<MovieEntity, MovieResponse>
+): MovieRepositoryContract = MovieRepository(db, movieDataContract, movieMapper)
 
 fun provideMovieUseCase(
     dispacher: DispatchersProvider,

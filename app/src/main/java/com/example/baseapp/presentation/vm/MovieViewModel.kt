@@ -3,9 +3,9 @@ package com.example.baseapp.presentation.vm
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.asLiveData
-import androidx.lifecycle.liveData
 import com.example.base.di.provideDispatchers
-import com.example.baseapp.data.local.di.provideDb
+import com.example.baseapp.data.local.di.provideMovieDao
+import com.example.baseapp.data.local.di.provideSqLDriver
 import com.example.baseapp.data.remote.di.provideMovieDataContract
 import com.example.baseapp.data.remote.di.provideSuggestedSearchEntityMapper
 import com.example.baseapp.domain.di.provideMovieRepositoryContract
@@ -13,9 +13,7 @@ import com.example.baseapp.domain.di.provideMovieUseCase
 import com.example.baseapp.domain.model.DResponse
 import com.example.baseapp.domain.model.vo.MovieResponse
 import com.example.baseapp.domain.usecase.MovieUseCase
-import io.ktor.http.ContentType
 import org.koin.android.ext.koin.androidApplication
-import org.koin.android.ext.koin.androidContext
 import org.koin.androidx.viewmodel.dsl.viewModel
 import org.koin.dsl.module
 
@@ -27,7 +25,8 @@ class MovieViewModel(moviesUseCase: MovieUseCase) : ViewModel() {
 }
 
 val useCaseModule = module {
-    single { provideDb(androidApplication()) }
+    single { provideSqLDriver(androidApplication()) }
+    single { provideMovieDao(get(),get()) }
     single { provideMovieDataContract() }
     single { provideSuggestedSearchEntityMapper() }
     single { provideMovieRepositoryContract(get(), get(), get()) }
