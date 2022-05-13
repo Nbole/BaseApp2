@@ -14,7 +14,6 @@ interface MovieUseCase {
 }
 
 class MoviesUseCaseImpl constructor(
-//class MoviesUseCase @Inject constructor(
     private val movieRepositoryContract: MovieRepositoryContract,
     private val dispatcher: DispatchersProvider
 ): MovieUseCase {
