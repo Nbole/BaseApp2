@@ -6,5 +6,5 @@ import kotlinx.coroutines.flow.Flow
 import movie.MovieEntity
 
 interface MovieRepositoryContract {
-    fun getLatestMovies(): Flow<DResponse<out List<MovieResponse>?>>
+    fun getLatestMovies(): Flow<DResponse<List<MovieResponse>>>
 }

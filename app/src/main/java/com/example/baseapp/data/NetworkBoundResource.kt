@@ -20,7 +20,7 @@ inline fun <ResultType, RequestType> networkBoundResource(
             loadFromDb().map { WResponse.Success(it) }
         } else {
             val error = netWorkResponse as Response.Error
-            loadFromDb().map { WResponse.Error(error.message.orEmpty(), it) }
+            loadFromDb().map { WResponse.Error(error.message, it) }
         }
     )
 }

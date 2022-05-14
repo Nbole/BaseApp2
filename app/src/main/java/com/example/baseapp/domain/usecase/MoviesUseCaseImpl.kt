@@ -10,14 +10,14 @@ import kotlinx.coroutines.flow.flowOn
 import javax.inject.Inject
 
 interface MovieUseCase {
-    operator fun invoke(): Flow<DResponse<out List<MovieResponse>?>>
+    operator fun invoke(): Flow<DResponse<List<MovieResponse>>>
 }
 
 class MoviesUseCaseImpl constructor(
     private val movieRepositoryContract: MovieRepositoryContract,
     private val dispatcher: DispatchersProvider
 ): MovieUseCase {
-    override operator fun invoke(): Flow<DResponse<out List<MovieResponse>?>> {
+    override operator fun invoke(): Flow<DResponse<List<MovieResponse>>> {
       return movieRepositoryContract.getLatestMovies().flowOn(dispatcher.io)
     }
 }

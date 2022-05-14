@@ -3,13 +3,10 @@ package com.example.baseapp.data.remote
 import io.ktor.client.features.ClientRequestException
 import java.io.IOException
 
-sealed class Response<T>(
-    val data: T? = null,
-    val message: String? = null
-) {
-    class Success<T>(data: T) : Response<T>(data)
-    class Loading<T>(data: T? = null) : Response<T>(data)
-    class Error<T>(message: String, data: T? = null) : Response<T>(data, message)
+sealed class Response<T> {
+    data class Success<T>(val data: T) : Response<T>()
+    data class Loading<T>(val data: T? = null) : Response<T>()
+    data class Error<T>(val message: String, val data: T? = null) : Response<T>()
 }
 
 fun <T> T.toResponse(): Response<T> {

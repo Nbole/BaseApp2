@@ -92,6 +92,9 @@ dependencies {
     kapt "com.google.dagger:hilt-android-compiler:$dagger_version"
     kapt "androidx.room:room-compiler:$room_version"
 
+    implementation "io.coil-kt:coil:$coil_version"
+    implementation "io.coil-kt:coil-compose:$coil_version"
+
     // Architectural Components
     implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:2.4.1"
     implementation "androidx.lifecycle:lifecycle-livedata-ktx:2.4.1"

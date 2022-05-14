@@ -4,7 +4,9 @@ import com.example.base.mappers.BaseMapper
 import com.example.baseapp.data.networkBoundResource
 import com.example.baseapp.data.local.model.dao.MovieDao
 import com.example.baseapp.data.local.model.db.Movie
+import com.example.baseapp.data.remote.Response
 import com.example.baseapp.data.remote.mapResponse
+import com.example.baseapp.data.remote.model.MovieResult
 import com.example.baseapp.domain.model.DResponse
 import com.example.baseapp.domain.MovieDataContract
 import com.example.baseapp.domain.MovieRepositoryContract
@@ -18,13 +20,13 @@ class MovieRepository(
     private val movieDataContract: MovieDataContract,
     private val movieMapper: BaseMapper<MovieEntity, MovieResponse>
 ) : MovieRepositoryContract {
-    override fun getLatestMovies(): Flow<DResponse<out List<MovieResponse>?>> = networkBoundResource(
+    override fun getLatestMovies(): Flow<DResponse<List<MovieResponse>>> = networkBoundResource(
         { db.loadAllMovies() },
         { movieDataContract.getLatestMovies() },
         { response ->
-            val movies: List<Movie>? = response.data?.results
+            val movies = (response as Response.Success).data.results
             db.deleteAllMovies()
-            if (!movies.isNullOrEmpty()) {
+            if (movies.isNotEmpty()) {
                 db.saveMovies(movies)
             }
         }
