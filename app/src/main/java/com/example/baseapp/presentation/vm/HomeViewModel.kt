@@ -1,50 +1,47 @@
 package com.example.baseapp.presentation.vm
 
 import androidx.lifecycle.viewModelScope
-import com.example.baseapp.domain.model.DResponse
-import com.example.baseapp.domain.usecase.MovieUseCase
+import com.example.baseapp.domain.model.DomainResponse
+import com.example.baseapp.domain.usecase.PreviewMovieUseCase
 import com.example.baseapp.presentation.BaseState
 import com.example.baseapp.presentation.MovieStates
-import com.example.baseapp.presentation.model.MovieDisplay
+import com.example.baseapp.presentation.model.PreviewMovieDisplay
 import kotlinx.coroutines.launch
-import java.util.Collections.copy
 
-class MovieViewModel(private val moviesUseCase: MovieUseCase) :
+class HomeViewModel(private val moviesUseCase: PreviewMovieUseCase) :
     BaseViewModel<MovieStates.Event, MovieStates.State, MovieStates.Effect>() {
 
     init {
         viewModelScope.launch {
             moviesUseCase().collect { result ->
                 val state: MovieStates.State = when (result) {
-                    is DResponse.Success -> {
+                    is DomainResponse.Success -> {
                         MovieStates.State.ShowLatestMovies(
                             BaseState.Success(
                                 data = result.data.map {
-                                    MovieDisplay(
+                                    PreviewMovieDisplay(
                                         it.id,
                                         it.title,
-                                        it.overview,
                                         it.posterPath
                                     )
                                 }
                             )
                         )
                     }
-                    is DResponse.Loading -> {
+                    is DomainResponse.Loading -> {
                         MovieStates.State.ShowLatestMovies(
                             BaseState.Loading(
                                 data = result.data?.map {
-                                    MovieDisplay(
+                                    PreviewMovieDisplay(
                                         it.id,
                                         it.title,
-                                        it.overview,
                                         it.posterPath
                                     )
                                 }
                             )
                         )
                     }
-                    is DResponse.Error -> {
+                    is DomainResponse.Error -> {
                         MovieStates.State.ShowLatestMovies(
                             BaseState.Error
                         )
@@ -64,6 +61,9 @@ class MovieViewModel(private val moviesUseCase: MovieUseCase) :
     override fun handleEvent(event: MovieStates.Event) {
         when (event) {
             is MovieStates.Event.OnMovieSelected -> {
+                setEffect {
+                    MovieStates.Effect.GoToDetailMovie(event.id)
+                }
             }
         }
     }

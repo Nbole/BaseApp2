@@ -1,4 +1,4 @@
-package com.example.base
+package com.example.base.di
 
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.Dispatchers

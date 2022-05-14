@@ -1,17 +1,17 @@
 package com.example.baseapp.data.remote
 
 import com.example.baseapp.data.WResponse
-import com.example.baseapp.domain.model.DResponse
+import com.example.baseapp.domain.model.DomainResponse
 
 internal fun <I, O> WResponse<I>.mapResponse(transformAction: (I) -> O) =
     when (this) {
         is WResponse.Error -> {
-            DResponse.Error(message)
+            DomainResponse.Error(message)
         }
         is WResponse.Loading -> {
-            DResponse.Loading(data?.let(transformAction::invoke))
+            DomainResponse.Loading(data?.let(transformAction::invoke))
         }
         is WResponse.Success -> {
-            DResponse.Success(transformAction.invoke(data))
+            DomainResponse.Success(transformAction.invoke(data))
         }
     }

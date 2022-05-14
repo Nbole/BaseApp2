@@ -1,16 +1,16 @@
 package com.example.baseapp.presentation
 
-import com.example.baseapp.domain.model.DResponse
+import com.example.baseapp.domain.model.DomainResponse
 
-internal fun <I, O> DResponse<I>.mapResponse(transformAction: (I) -> O) =
+internal fun <I, O> DomainResponse<I>.mapResponse(transformAction: (I) -> O) =
     when (this) {
-        is DResponse.Error -> {
+        is DomainResponse.Error -> {
             BaseState.Error
         }
-        is DResponse.Loading -> {
+        is DomainResponse.Loading -> {
             BaseState.Loading(transformAction::invoke)
         }
-        is DResponse.Success -> {
+        is DomainResponse.Success -> {
             BaseState.Success(transformAction::invoke)
         }
     }

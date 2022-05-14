@@ -1,7 +1,7 @@
 package com.example.baseapp.data.local.di
 
 import android.content.Context
-import com.example.base.DispatchersProvider
+import com.example.base.di.DispatchersProvider
 import com.example.baseapp.MovieDataBase
 import com.example.baseapp.data.local.model.dao.MovieDao
 import com.example.baseapp.data.local.model.dao.MovieDaoImpl

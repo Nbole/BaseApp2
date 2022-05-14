@@ -2,12 +2,9 @@ package com.example.baseapp.presentation.ui
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
-import androidx.fragment.app.commit
 import androidx.fragment.app.commitNow
 import com.example.baseapp.R
 import com.example.baseapp.databinding.ActivityMainBinding
-import com.example.baseapp.presentation.vm.MovieViewModel
-import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
@@ -19,9 +16,7 @@ class MainActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         if (savedInstanceState == null) {
-            supportFragmentManager.commitNow {
-                replace(R.id.id,HomeFragment())
-            }
+            supportFragmentManager.commitNow { add(R.id.id,HomeFragment()) }
         }
     }
 }
