@@ -7,6 +7,7 @@ import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.withContext
 import movie.GenresEntities
 import movie.MovieEntity
+import movie.MovieEntityQueries
 import movie.PreviewMovieEntity
 
 interface MovieDao {
