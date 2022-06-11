@@ -120,6 +120,7 @@ dependencies {
     implementation "io.insert-koin:koin-androidx-workmanager:3.2.0"
     implementation "io.insert-koin:koin-androidx-navigation:3.2.0"
     implementation "com.squareup.sqldelight:android-driver:1.5.3"
+    implementation "com.github.Nbole:NBtools:0.0.1"
 }
 
 sqldelight {

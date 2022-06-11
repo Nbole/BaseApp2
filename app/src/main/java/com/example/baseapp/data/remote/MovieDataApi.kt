@@ -13,45 +13,45 @@ import io.ktor.client.request.url
 import java.io.IOException
 
 class MovieDataApi : MovieDataContract {
-    override suspend fun getLatestMovies(): KtorResponse<PreviewMovieResult> =
+    override suspend fun getLatestMovies(): SerialResponse<PreviewMovieResult> =
         try {
-            KtorResponse.Success(
+            SerialResponse.Success(
                 KtorClient.httpClient.get {
                     url(BuildConfig.BASE_URL + "movie/now_playing")
                     parameter("api_key", BuildConfig.API_KEY)
                 }
             )
         } catch (e: ClientRequestException) {
-            KtorResponse.Error(data = null, message = e.message)
+            SerialResponse.Error(data = null, message = e.message)
         } catch (e: IOException) {
-            KtorResponse.Error(data = null, message = e.message.orEmpty())
+            SerialResponse.Error(data = null, message = e.message.orEmpty())
         }
 
-    override suspend fun getMovie(id: Int): KtorResponse<MovieResult> =
+    override suspend fun getMovie(id: Int): SerialResponse<MovieResult> =
         try {
-            KtorResponse.Success(
+            SerialResponse.Success(
                 KtorClient.httpClient.get {
                     url(BuildConfig.BASE_URL + "movie/$id")
                     parameter("api_key", BuildConfig.API_KEY)
                 }
             )
         } catch (e: ClientRequestException) {
-            KtorResponse.Error(data = null, message = e.message)
+            SerialResponse.Error(data = null, message = e.message)
         } catch (e: IOException) {
-            KtorResponse.Error(data = null, message = e.message.orEmpty())
+            SerialResponse.Error(data = null, message = e.message.orEmpty())
         }
 
-    override suspend fun getGenres(): KtorResponse<GenresResult> =
+    override suspend fun getGenres(): SerialResponse<GenresResult> =
         try {
-            KtorResponse.Success(
+            SerialResponse.Success(
                 KtorClient.httpClient.get {
                     url(BuildConfig.BASE_URL + "genre/movie/list")
                     parameter("api_key", BuildConfig.API_KEY)
                 }
             )
         } catch (e: ClientRequestException) {
-            KtorResponse.Error(data = null, message = e.message)
+            SerialResponse.Error(data = null, message = e.message)
         } catch (e: IOException) {
-            KtorResponse.Error(data = null, message = e.message.orEmpty())
+            SerialResponse.Error(data = null, message = e.message.orEmpty())
         }
 }

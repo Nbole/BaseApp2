@@ -4,7 +4,7 @@ import com.example.baseapp.data.local.model.dao.MovieDao
 import com.example.baseapp.data.local.model.db.Genre
 import com.example.baseapp.data.local.model.db.Movie
 import com.example.baseapp.data.networkBoundResource
-import com.example.baseapp.data.remote.KtorResponse
+import com.example.baseapp.data.remote.SerialResponse
 import com.example.baseapp.data.remote.mapResponse
 import com.example.baseapp.domain.MovieDataContract
 import com.example.baseapp.domain.MovieRepositoryContract
@@ -27,7 +27,7 @@ class MovieRepository(
             { db.loadAllPreviewMovies() },
             { movieDataContract.getLatestMovies() },
             { response ->
-                val movies = (response as KtorResponse.Success).data.results
+                val movies = (response as SerialResponse.Success).data.results
                 db.deleteAllPreviewMovies()
                 if (movies.isNotEmpty()) {
                     db.savePreviewMovies(
@@ -57,7 +57,7 @@ class MovieRepository(
         { db.loadMovie(id) },
         { movieDataContract.getMovie(id) },
         { response ->
-            val movies: Movie = (response as KtorResponse.Success).data.results
+            val movies: Movie = (response as SerialResponse.Success).data.results
             db.deleteAllMovies()
             db.saveMovie(
                 MovieEntity(
@@ -87,7 +87,7 @@ class MovieRepository(
         { db.loadGenres() },
         { movieDataContract.getGenres() },
         { response ->
-            val genres: List<Genre> = (response as KtorResponse.Success).data.genres
+            val genres: List<Genre> = (response as SerialResponse.Success).data.genres
             db.deleteAllMovies()
             db.saveGenres(
                 genres.map {
