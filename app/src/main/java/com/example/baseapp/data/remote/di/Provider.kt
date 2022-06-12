@@ -15,23 +15,3 @@ import io.ktor.http.contentType
 import kotlinx.serialization.json.Json
 
 fun provideMovieDataContract(): MovieDataContract = MovieDataApi()
-
-object KtorClient {
-    private val json = Json {
-        encodeDefaults = true
-        ignoreUnknownKeys = true
-    }
-    val httpClient = HttpClient {
-        install(JsonFeature){ serializer = KotlinxSerializer(json) }
-        install(Logging){ level = LogLevel.ALL }
-        install(HttpTimeout) {
-            socketTimeoutMillis = 30_000
-            requestTimeoutMillis = 30_000
-            connectTimeoutMillis = 30_000
-        }
-        defaultRequest {
-            contentType(ContentType.Application.Json)
-            accept(ContentType.Application.Json)
-        }
-    }
-}

@@ -1,11 +1,12 @@
 package com.example.baseapp.data.remote
 
 import com.example.baseapp.BuildConfig
-import com.example.baseapp.data.remote.di.KtorClient
 import com.example.baseapp.data.remote.model.GenresResult
 import com.example.baseapp.data.remote.model.MovieResult
 import com.example.baseapp.data.remote.model.PreviewMovieResult
 import com.example.baseapp.domain.MovieDataContract
+import com.example.networkbound.KtorClient
+import com.example.networkbound.SerialResponse
 import io.ktor.client.features.ClientRequestException
 import io.ktor.client.request.get
 import io.ktor.client.request.parameter

@@ -3,8 +3,6 @@ package com.example.baseapp.data.repository
 import com.example.baseapp.data.local.model.dao.MovieDao
 import com.example.baseapp.data.local.model.db.Genre
 import com.example.baseapp.data.local.model.db.Movie
-import com.example.baseapp.data.networkBoundResource
-import com.example.baseapp.data.remote.SerialResponse
 import com.example.baseapp.data.remote.mapResponse
 import com.example.baseapp.domain.MovieDataContract
 import com.example.baseapp.domain.MovieRepositoryContract
@@ -12,6 +10,8 @@ import com.example.baseapp.domain.model.DomainResponse
 import com.example.baseapp.domain.model.vo.GenreResponse
 import com.example.baseapp.domain.model.vo.MovieResponse
 import com.example.baseapp.domain.model.vo.PreviewMovieResponse
+import com.example.networkbound.SerialResponse
+import com.example.networkbound.networkBoundResource
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map
 import movie.GenresEntities
