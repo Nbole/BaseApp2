@@ -6,8 +6,12 @@ import com.example.baseapp.data.local.model.dao.NewsDao
 import com.example.baseapp.data.local.model.db.BodyField
 import com.example.baseapp.data.local.model.db.HeaderField
 import com.example.baseapp.data.local.model.db.HeaderTable
+import com.example.baseapp.data.local.model.db.TotalHeaders
 
-@Database(entities = [HeaderField::class, BodyField::class, HeaderTable::class], version = 1)
+@Database(
+    entities = [TotalHeaders::class, HeaderField::class, BodyField::class, HeaderTable::class],
+    version = 1
+)
 abstract class NewsDb : RoomDatabase() {
     abstract fun newsDao(): NewsDao
     companion object { const val DATABASE_NAME: String = "news_db" }

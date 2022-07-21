@@ -10,6 +10,7 @@ import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
 import androidx.paging.LoadState
+import com.example.baseapp.R
 import com.example.baseapp.databinding.FragmentBlankBinding
 import com.example.baseapp.presentation.vm.NewsViewModel
 import kotlinx.coroutines.Dispatchers
@@ -51,6 +52,15 @@ class HomeFragment : Fragment() {
             }
         }
 
+        binding.swipe.setOnRefreshListener {
+            adapter.refresh()
+        }
+
+        viewModel.resultAmount.observe(viewLifecycleOwner) {
+            binding.results.isVisible = it != 0
+            binding.results.text = getString(R.string.results_d, it)
+        }
+
         viewModel.pagedNews.observe(viewLifecycleOwner) { list ->
             lifecycleScope.launch(Dispatchers.Default) {
                 repeatOnLifecycle(Lifecycle.State.STARTED) {
@@ -59,5 +69,4 @@ class HomeFragment : Fragment() {
             }
         }
     }
-
 }

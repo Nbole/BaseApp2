@@ -10,6 +10,8 @@ import com.example.baseapp.domain.MovieDataContract
 import com.example.baseapp.domain.MovieRepositoryContract
 import com.example.baseapp.domain.NewsDataContract
 import com.example.baseapp.domain.NewsRepositoryContract
+import com.example.baseapp.domain.usecase.HeaderAmountUseCase
+import com.example.baseapp.domain.usecase.HeaderAmountUseCaseImpl
 import com.example.baseapp.domain.usecase.MovieDetailUseCase
 import com.example.baseapp.domain.usecase.MovieDetailUseCaseImpl
 import com.example.baseapp.domain.usecase.NewsSearchUseCase
@@ -38,6 +40,9 @@ fun provideMovieDetailUseCase(
 ): MovieDetailUseCase = MovieDetailUseCaseImpl(movieRepositoryContract, dispacher)
 
 fun provideNewsUseCase(
-    dispacher: DispatchersProvider,
     newsRepositoryContract: NewsRepositoryContract
-): NewsSearchUseCase = NewsSearchUseCaseImpl(newsRepositoryContract, dispacher)
+): NewsSearchUseCase = NewsSearchUseCaseImpl(newsRepositoryContract)
+
+fun provideHeaderAmountUseCase(
+    newsRepositoryContract: NewsRepositoryContract
+): HeaderAmountUseCase = HeaderAmountUseCaseImpl(newsRepositoryContract)

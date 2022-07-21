@@ -9,6 +9,7 @@ import com.example.baseapp.data.local.model.dao.NewsDao
 import com.example.baseapp.data.local.model.db.BodyField
 import com.example.baseapp.data.local.model.db.HeaderField
 import com.example.baseapp.data.local.model.db.HeaderTable
+import com.example.baseapp.data.local.model.db.TotalHeaders
 import com.example.baseapp.data.remote.NewsDataApi
 import com.example.baseapp.data.remote.model.NewResult
 import com.example.networkbound.SerialResponse
@@ -54,10 +55,17 @@ class PagedHeaderMediator(
                 if (loadType == LoadType.REFRESH) {
                     newsDao.deleteRelatedTables()
                     newsDao.deleteAllHeaderFields()
+                    newsDao.deleteTotalHeaders()
                 }
 
                 if (!endOfPaginated) {
                     db.runInTransaction {
+                        response.data.response.total?.let {
+                            db.newsDao().saveTotalHeader(
+                                TotalHeaders(query,it)
+                            )
+                        } ?: newsDao.deleteTotalHeaders()
+
                         db.newsDao().saveRelatedTable(headerTables)
                         db.newsDao().saveBodyFields(
                             response.data.response.results.orEmpty().map {
@@ -82,7 +90,7 @@ class PagedHeaderMediator(
                 }
                 MediatorResult.Success(endOfPaginationReached = endOfPaginated)
             } else {
-                MediatorResult.Error(Exception("PreviewSearchResponse response null"))
+                MediatorResult.Error(Exception("response null"))
             }
         }
     }

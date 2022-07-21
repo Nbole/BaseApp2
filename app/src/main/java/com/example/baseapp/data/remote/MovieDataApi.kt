@@ -24,7 +24,7 @@ class NewsDataApi: NewsDataContract {
                     parameter("q",q)
                     parameter("page",page)
                     parameter("page-size", size)
-                    parameter("show-fields","starRating,body,headline,thumbnail")
+                    parameter("show-fields","starRating,body,headline,thumbnail,total")
                     parameter("format","json")
                     parameter("from-date","20")
                     parameter("api-key", BuildConfig.API_KEY)

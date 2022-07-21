@@ -27,8 +27,8 @@ data class NewsDetail(
 
 @Serializable
 data class NewsDetailFields(
-    val headline: String,
-    val body: String,
+    val headline: String? = null,
+    val body: String? = null,
     val starRating: Int? = null,
-    val thumbnail: String,
+    val thumbnail: String? = null,
 )

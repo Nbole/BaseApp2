@@ -2,12 +2,11 @@ package com.example.baseapp.domain
 
 import androidx.paging.PagingData
 import com.example.baseapp.data.local.model.db.HeaderField
-import com.example.baseapp.data.local.model.db.Pepe
+import com.example.baseapp.data.local.model.db.TotalHeaders
 import com.example.baseapp.domain.model.DomainResponse
 import com.example.baseapp.domain.model.vo.GenreResponse
 import com.example.baseapp.domain.model.vo.MovieResponse
 import com.example.baseapp.domain.model.vo.PreviewMovieResponse
-import com.example.networkbound.NWResponse
 import kotlinx.coroutines.flow.Flow
 
 interface MovieRepositoryContract {
@@ -17,6 +16,6 @@ interface MovieRepositoryContract {
 }
 
 interface NewsRepositoryContract {
-    fun getHeaderNews(q: String): Flow<NWResponse<List<Pepe>>>
     fun getPagedHeaderNews(q: String): Flow<PagingData<HeaderField>>
+    fun getResults(q: String): Flow<TotalHeaders>
 }

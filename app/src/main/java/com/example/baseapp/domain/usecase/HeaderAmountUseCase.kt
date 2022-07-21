@@ -6,6 +6,7 @@ import androidx.paging.PagingData
 import com.example.base.di.DispatchersProvider
 import com.example.baseapp.data.local.model.db.HeaderField
 import com.example.baseapp.data.local.model.db.Pepe
+import com.example.baseapp.data.local.model.db.TotalHeaders
 import com.example.baseapp.data.remote.mapResponse
 import com.example.baseapp.domain.NewsRepositoryContract
 import com.example.baseapp.domain.model.DomainResponse
@@ -15,13 +16,13 @@ import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flowOn
 import kotlinx.coroutines.flow.map
 
-interface NewsSearchUseCase {
-    fun pagedHeaders(q: String): LiveData<PagingData<HeaderField>>
+interface HeaderAmountUseCase {
+    operator fun invoke(q: String): LiveData<TotalHeaders>
 }
 
-class NewsSearchUseCaseImpl constructor(
+class HeaderAmountUseCaseImpl constructor(
     private val newsRepositoryContract: NewsRepositoryContract,
-) : NewsSearchUseCase {
-    override fun pagedHeaders(q: String): LiveData<PagingData<HeaderField>> =
-        newsRepositoryContract.getPagedHeaderNews(q).asLiveData()
+) : HeaderAmountUseCase {
+    override operator fun invoke(q: String): LiveData<TotalHeaders> =
+        newsRepositoryContract.getResults(q).asLiveData()
 }

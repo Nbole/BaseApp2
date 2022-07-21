@@ -1,6 +1,13 @@
 package com.example.baseapp.data.local.model.db
+
 import androidx.room.Entity
 import androidx.room.PrimaryKey
+
+@Entity
+data class TotalHeaders(
+    @PrimaryKey val id: String,
+    val total: Int,
+)
 
 @Entity
 data class HeaderField(
@@ -27,7 +34,7 @@ data class Pepe(
 
 @Entity(primaryKeys = ["headerId", "page", "query"])
 data class HeaderTable(
-    val query:String,
+    val query: String,
     val headerId: String,
     val index: Int,
     val page: Int
