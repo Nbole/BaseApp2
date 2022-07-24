@@ -10,7 +10,7 @@ import com.example.baseapp.data.local.model.db.BodyField
 import com.example.baseapp.data.local.model.db.HeaderField
 import com.example.baseapp.data.local.model.db.HeaderTable
 import com.example.baseapp.data.local.model.db.TotalHeaders
-import com.example.baseapp.data.remote.NewsDataApi
+import com.example.baseapp.data.remote.NewsApiApi
 import com.example.baseapp.data.remote.model.NewResult
 import com.example.networkbound.SerialResponse
 import kotlinx.coroutines.Dispatchers
@@ -19,7 +19,7 @@ import kotlinx.coroutines.withContext
 @OptIn(ExperimentalPagingApi::class)
 class PagedHeaderMediator(
     private val db: NewsDb,
-    private val api: NewsDataApi,
+    private val api: NewsApiApi,
     private val query: String,
 ) : RemoteMediator<Int, HeaderField>() {
 
@@ -66,7 +66,6 @@ class PagedHeaderMediator(
                                 TotalHeaders(query,it)
                             )
                         } ?: newsDao.deleteTotalHeaders()
-
                         db.newsDao().saveRelatedTable(headerTables)
                         db.newsDao().saveBodyFields(
                             response.data.response.results.orEmpty().map {

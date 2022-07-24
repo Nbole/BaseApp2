@@ -20,8 +20,8 @@ class PagedNewsAdapter(private val fm: FragmentManager) :
         parent: ViewGroup,
         viewType: Int,
     ): HeaderViewHolder = HeaderViewHolder(
-        ListItemHeaderBinding.inflate(LayoutInflater.from(parent.context), parent, false),
-        fm
+        binding = ListItemHeaderBinding.inflate(LayoutInflater.from(parent.context), parent, false),
+        fm = fm
     )
 
     override fun onBindViewHolder(holder: HeaderViewHolder, position: Int) {
@@ -34,9 +34,7 @@ class PagedNewsAdapter(private val fm: FragmentManager) :
     ) : RecyclerView.ViewHolder(binding.root) {
         fun bind(input: HeaderField) {
             binding.txtTitle.text = input.webTitle
-            binding.imageNews.load(
-                uri = input.thumbnail,
-            ) {
+            binding.imageNews.load(input.thumbnail) {
                 placeholder(R.drawable.ic_launcher_background)
             }
             binding.txtDate.text = input.webPublicationDate
@@ -45,8 +43,7 @@ class PagedNewsAdapter(private val fm: FragmentManager) :
                     R.id.container, DetailFragment().apply {
                         arguments = bundleOf("id" to input.id)
                     }
-                ).addToBackStack("")
-                    .commit()
+                ).addToBackStack("").commit()
             }
         }
     }

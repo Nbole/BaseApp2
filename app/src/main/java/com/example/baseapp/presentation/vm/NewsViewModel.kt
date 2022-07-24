@@ -20,9 +20,7 @@ class NewsViewModel(
         newsUseCase.pagedHeaders(it)
     }
     val resultAmount: LiveData<Int?> =
-        _query.switchMap {
-            headerAmountUseCase(it).map { result -> result?.total }
-        }
+        _query.switchMap { headerAmountUseCase(it).map { result -> result?.total } }
 
     fun setQuery(query: String) {
         _query.value = query

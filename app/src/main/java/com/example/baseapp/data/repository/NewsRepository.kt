@@ -9,13 +9,13 @@ import com.example.baseapp.data.local.model.db.HeaderField
 import com.example.baseapp.data.local.model.db.Pepe
 import com.example.baseapp.data.local.model.db.TotalHeaders
 import com.example.baseapp.data.paging.PagedHeaderMediator
-import com.example.baseapp.data.remote.NewsDataApi
+import com.example.baseapp.data.remote.NewsApiApi
 import com.example.baseapp.domain.NewsRepositoryContract
 import kotlinx.coroutines.flow.Flow
 
 class NewsRepository(
     private val db: NewsDb,
-    private val api: NewsDataApi
+    private val api: NewsApiApi
 ) : NewsRepositoryContract {
     @OptIn(ExperimentalPagingApi::class)
     override fun getPagedHeaderNews(q: String): Flow<PagingData<HeaderField>> {
