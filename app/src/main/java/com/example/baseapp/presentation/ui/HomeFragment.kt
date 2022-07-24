@@ -31,7 +31,7 @@ class HomeFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        val adapter = PagedNewsAdapter()
+        val adapter = PagedNewsAdapter(parentFragmentManager)
         binding.recycler.adapter = adapter
         binding.btnSearch.setOnClickListener {
             if (binding.editText.text.toString().isNotBlank()) {
@@ -57,7 +57,7 @@ class HomeFragment : Fragment() {
         }
 
         viewModel.resultAmount.observe(viewLifecycleOwner) {
-            binding.results.isVisible = it != 0
+            binding.results.isVisible = it != null
             binding.results.text = getString(R.string.results_d, it)
         }
 

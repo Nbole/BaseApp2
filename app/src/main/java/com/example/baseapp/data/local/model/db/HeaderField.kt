@@ -6,7 +6,7 @@ import androidx.room.PrimaryKey
 @Entity
 data class TotalHeaders(
     @PrimaryKey val id: String,
-    val total: Int,
+    val total: Int?,
 )
 
 @Entity

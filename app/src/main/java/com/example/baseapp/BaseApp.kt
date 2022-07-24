@@ -6,12 +6,14 @@ import com.example.baseapp.data.local.di.provideMovieDao
 import com.example.baseapp.data.local.di.provideNewsDb
 import com.example.baseapp.data.remote.NewsDataApi
 import com.example.baseapp.data.remote.di.provideMovieDataContract
+import com.example.baseapp.domain.di.provideDetailNewsUseCase
 import com.example.baseapp.domain.di.provideHeaderAmountUseCase
 import com.example.baseapp.domain.di.provideMovieDetailUseCase
 import com.example.baseapp.domain.di.provideMovieRepositoryContract
 import com.example.baseapp.domain.di.provideNewsRepositoryContract
 import com.example.baseapp.domain.di.provideNewsUseCase
 import com.example.baseapp.domain.di.providePreviewMovieUseCase
+import com.example.baseapp.presentation.vm.DetailFragmentViewModel
 import com.example.baseapp.presentation.vm.HomeViewModel
 import com.example.baseapp.presentation.vm.MovieDetailViewModel
 import com.example.baseapp.presentation.vm.NewsViewModel
@@ -41,6 +43,7 @@ val useCaseModule = module {
     single { provideDispatchers() }
     single { providePreviewMovieUseCase(get(), get()) }
     single { provideNewsUseCase(get()) }
+    single { provideDetailNewsUseCase(get()) }
     single { provideHeaderAmountUseCase(get()) }
     single { provideMovieDetailUseCase(get(), get()) }
 }
@@ -49,4 +52,5 @@ val viewModelModule = module {
     viewModel { HomeViewModel(get()) }
     viewModel { MovieDetailViewModel(get()) }
     viewModel { NewsViewModel(get(), get()) }
+    viewModel { DetailFragmentViewModel(get()) }
 }

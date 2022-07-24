@@ -22,8 +22,8 @@ interface NewsDao {
     fun saveTotalHeader(input:TotalHeaders)
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     fun saveRelatedTable(input:List<HeaderTable>)
-    @Query("SELECT * FROM HeaderField INNER JOIN BodyField ON id = bodyId")
-    fun loadAllHeaderFields(): Flow<List<Pepe>>
+    @Query("SELECT * FROM HeaderField INNER JOIN BodyField ON id = bodyId WHERE id ==:id")
+    fun loadAllHeaderFields(id: String): Flow<Pepe>
     @Query("SELECT * FROM TotalHeaders WHERE id ==:query")
     fun loadTotalHeader(query: String): Flow<TotalHeaders>
     @Query(

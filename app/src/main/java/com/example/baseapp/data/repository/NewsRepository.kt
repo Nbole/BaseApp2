@@ -6,6 +6,7 @@ import androidx.paging.PagingConfig
 import androidx.paging.PagingData
 import com.example.baseapp.data.local.model.NewsDb
 import com.example.baseapp.data.local.model.db.HeaderField
+import com.example.baseapp.data.local.model.db.Pepe
 import com.example.baseapp.data.local.model.db.TotalHeaders
 import com.example.baseapp.data.paging.PagedHeaderMediator
 import com.example.baseapp.data.remote.NewsDataApi
@@ -37,4 +38,6 @@ class NewsRepository(
     }
 
     override fun getResults(q: String): Flow<TotalHeaders> = db.newsDao().loadTotalHeader(q)
+
+    override fun getPepe(q: String): Flow<Pepe> = db.newsDao().loadAllHeaderFields(q)
 }

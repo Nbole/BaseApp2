@@ -10,6 +10,8 @@ import com.example.baseapp.domain.MovieDataContract
 import com.example.baseapp.domain.MovieRepositoryContract
 import com.example.baseapp.domain.NewsDataContract
 import com.example.baseapp.domain.NewsRepositoryContract
+import com.example.baseapp.domain.usecase.DetailNewsUseCase
+import com.example.baseapp.domain.usecase.DetailNewsUseCaseImpl
 import com.example.baseapp.domain.usecase.HeaderAmountUseCase
 import com.example.baseapp.domain.usecase.HeaderAmountUseCaseImpl
 import com.example.baseapp.domain.usecase.MovieDetailUseCase
@@ -46,3 +48,7 @@ fun provideNewsUseCase(
 fun provideHeaderAmountUseCase(
     newsRepositoryContract: NewsRepositoryContract
 ): HeaderAmountUseCase = HeaderAmountUseCaseImpl(newsRepositoryContract)
+
+fun provideDetailNewsUseCase(
+    newsRepositoryContract: NewsRepositoryContract
+): DetailNewsUseCase = DetailNewsUseCaseImpl(newsRepositoryContract)

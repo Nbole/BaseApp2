@@ -56,6 +56,7 @@ class PagedHeaderMediator(
                     newsDao.deleteRelatedTables()
                     newsDao.deleteAllHeaderFields()
                     newsDao.deleteTotalHeaders()
+                    newsDao.deleteAllBodyFields()
                 }
 
                 if (!endOfPaginated) {
