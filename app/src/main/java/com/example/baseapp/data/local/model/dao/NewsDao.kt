@@ -8,7 +8,7 @@ import androidx.room.Query
 import com.example.baseapp.data.local.model.db.BodyField
 import com.example.baseapp.data.local.model.db.HeaderField
 import com.example.baseapp.data.local.model.db.HeaderTable
-import com.example.baseapp.data.local.model.db.Pepe
+import com.example.baseapp.data.local.model.db.NewsDetail
 import com.example.baseapp.data.local.model.db.TotalHeaders
 import kotlinx.coroutines.flow.Flow
 
@@ -23,7 +23,7 @@ interface NewsDao {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     fun saveRelatedTable(input:List<HeaderTable>)
     @Query("SELECT * FROM HeaderField INNER JOIN BodyField ON id = bodyId WHERE id ==:id")
-    fun loadAllHeaderFields(id: String): Flow<Pepe>
+    fun loadAllHeaderFields(id: String): Flow<NewsDetail>
     @Query("SELECT * FROM TotalHeaders WHERE id ==:query")
     fun loadTotalHeader(query: String): Flow<TotalHeaders>
     @Query(

@@ -2,7 +2,6 @@ package com.example.baseapp
 
 import android.app.Application
 import com.example.base.di.provideDispatchers
-import com.example.baseapp.data.local.di.provideMovieDao
 import com.example.baseapp.data.local.di.provideNewsDb
 import com.example.baseapp.data.remote.NewsApiApi
 import com.example.baseapp.domain.di.provideDetailNewsUseCase
@@ -29,7 +28,6 @@ class BaseApp : Application() {
 
 val useCaseModule = module {
     single { provideNewsDb(get()) }
-    single { provideMovieDao(get(),get()) }
     single { NewsApiApi() }
     single { provideNewsRepositoryContract(get(), get()) }
     single { provideDispatchers() }

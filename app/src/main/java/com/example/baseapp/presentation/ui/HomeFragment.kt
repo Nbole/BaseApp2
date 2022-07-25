@@ -1,6 +1,7 @@
 package com.example.baseapp.presentation.ui
 
 import android.os.Bundle
+import android.view.KeyEvent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -33,9 +34,14 @@ class HomeFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         val adapter = PagedNewsAdapter(parentFragmentManager)
         binding.recycler.adapter = adapter
-        binding.btnSearch.setOnClickListener {
-            if (binding.editText.text.toString().isNotBlank()) {
-                viewModel.setQuery(binding.editText.text.toString())
+
+        binding.editText.setOnKeyListener{ v, keyCode, event ->
+            when {
+                ((keyCode == KeyEvent.KEYCODE_ENTER) && (event.action == KeyEvent.ACTION_DOWN)) -> {
+                    viewModel.setQuery(binding.editText.text.toString())
+                    return@setOnKeyListener true
+                }
+                else -> false
             }
         }
 

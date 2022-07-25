@@ -11,13 +11,21 @@
         <entry key="..\:/Users/NBole/BaseApp/app/src/main/res/layout/content_main.xml" value="0.209375" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.19010416666666666" />
         <entry key="app/src/main/res/layout/content_main.xml" value="0.21770833333333334" />
-        <entry key="app/src/main/res/layout/fragment_blank.xml" value="0.1956521739130435" />
+        <entry key="app/src/main/res/layout/fragment_blank.xml" value="0.3557692307692308" />
         <entry key="app/src/main/res/layout/fragment_first.xml" value="0.21770833333333334" />
         <entry key="app/src/main/res/layout/fragment_home.xml" value="0.3296875" />
         <entry key="app/src/main/res/layout/fragment_news_detail.xml" value="0.2916666666666667" />
         <entry key="app/src/main/res/layout/fragment_second.xml" value="0.21770833333333334" />
         <entry key="app/src/main/res/layout/header_fragment.xml" value="0.3296875" />
         <entry key="app/src/main/res/layout/list_item_header.xml" value="0.23385186356105164" />
+        <entry key="base/src/main/res/drawable/bkg_input_text_rounded_6dp.xml" value="0.2005" />
+        <entry key="base/src/main/res/drawable/bkg_input_text_rounded_fffff_6dp.xml" value="0.2005" />
+        <entry key="base/src/main/res/drawable/bkg_input_text_rpunded_fffff_6dp.xml" value="0.183" />
+        <entry key="base/src/main/res/drawable/bkg_input_texy_rounded_6dp.xml" value="0.182" />
+        <entry key="base/src/main/res/drawable/bkg_white_fffff_rounded_6dp.xml" value="0.182" />
+        <entry key="base/src/main/res/drawable/bkg_white_rounded_ffffff_12dp.xml" value="0.182" />
+        <entry key="base/src/main/res/drawable/inoput_text_status_selector.xml" value="0.182" />
+        <entry key="base/src/main/res/drawable/input_text_status_selector.xml" value="0.2005" />
         <entry key="base/src/main/res/layout/activity_main.xml" value="0.28177083333333336" />
       </map>
     </option>

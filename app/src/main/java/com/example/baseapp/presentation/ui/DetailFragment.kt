@@ -1,6 +1,7 @@
 package com.example.baseapp.presentation.ui
 
 import android.os.Bundle
+import android.text.Html
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -41,8 +42,10 @@ class DetailFragment : Fragment() {
         viewModel.setId(checkNotNull(args.getString("id")))
         viewModel.body.observe(viewLifecycleOwner) {
             binding.img.load(it.thumbnail)
-            binding.txtBody.text = it.body
-            binding.txtDate.text = it.webPublicationDate
+            binding.txtBody.text = Html.fromHtml(it.body, Html.FROM_HTML_MODE_COMPACT)
+            if (it.webPublicationDate.contains("T")) {
+                binding.txtDate.text = it.webPublicationDate.split("T").firstOrNull()
+            }
             binding.txtTitle.text = it.webTitle
         }
     }

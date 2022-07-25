@@ -24,7 +24,7 @@ data class BodyField(
     val body: String,
 )
 
-data class Pepe(
+data class NewsDetail(
     val webPublicationDate: String,
     val webTitle: String,
     val thumbnail: String,

@@ -37,7 +37,13 @@ class PagedNewsAdapter(private val fm: FragmentManager) :
             binding.imageNews.load(input.thumbnail) {
                 placeholder(R.drawable.ic_launcher_background)
             }
-            binding.txtDate.text = input.webPublicationDate
+
+            binding.txtDate.text = if (input.webPublicationDate.contains("T")) {
+                input.webPublicationDate.split("T").firstOrNull()
+            } else {
+                null
+            }
+
             itemView.setOnClickListener {
                 fm.beginTransaction().replace(
                     R.id.container, DetailFragment().apply {
